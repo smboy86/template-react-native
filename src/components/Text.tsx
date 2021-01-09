@@ -1,8 +1,10 @@
 import React from 'react';
 import {Text} from 'react-native';
 
-type TextProps = {};
-export default function (props: TextProps) {
+type TextProps = {
+  size: number;
+};
+export default function (props: any) {
   const {size, color, bold, style, children, ...newProps} = props;
 
   // 1) font 전역 설정
