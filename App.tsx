@@ -5,6 +5,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import RootContextProvider from './src/context/RootContextProvider';
 import ErrorBoundary from './src/components/ErrorBoundary';
 import RootNavigator from './src/navigation/RootNavigator';
+import NotifManager from './src/utils/NotifManager';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <ErrorBoundary>
           <StatusBar barStyle="light-content" />
           <RootNavigator />
+          <NotifManager />
         </ErrorBoundary>
       </SafeAreaProvider>
     </RootContextProvider>

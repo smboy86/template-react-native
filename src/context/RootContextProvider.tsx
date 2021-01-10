@@ -3,10 +3,11 @@ import rootReducer from './RootReducer';
 
 const initRootData = {
   isLogin: false,
+  notif: null,
   userInfo: {},
 };
 
-export const RootContext = React.createContext(null);
+export const RootContext = React.createContext(initRootData);
 
 const RootContextProvider = (props) => {
   const [state, dispatch] = React.useReducer(rootReducer, initRootData);

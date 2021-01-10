@@ -3,7 +3,6 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 // import RNBootSplash from 'react-native-bootsplash';
 // import LinkingConfiguration from './LinkingConfiguration';
-
 import {RootContext} from '../context/RootContextProvider';
 import LoginNavigator from './LoginNavigator';
 import MainNavigator from './MainNavigator';
@@ -21,9 +20,6 @@ export default function RootNavigator() {
         console.log('RootNavigator error ::: ', e);
       } finally {
         setIsAppLoading(false); // 1) 앱 로딩
-        setTimeout(() => {
-          dispatch({type: 'LOGIN', payload: null}); // 2) 로그인
-        }, 3000);
       }
     };
     appLoad();
