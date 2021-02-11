@@ -12,18 +12,7 @@ module.exports = {
   rules: {
     'import/no-unresolved': 'off',
     'no-use-before-define': 'off',
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'never',
-        mjs: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
-        vue: 'never',
-      },
-    ],
+    'import/extensions': ['off'],
     'react/jsx-filename-extension': [
       1,
       {
