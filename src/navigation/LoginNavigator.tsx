@@ -1,8 +1,8 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import {LoginParamList} from './types';
-import {tempLoginRouteScreen} from '../screens/tempScreens';
+import { LoginParamList } from './types';
+import { TempLoginRouteScreen } from '../screens/TempScreens';
 
 const LoginStack = createStackNavigator<LoginParamList>();
 
@@ -16,19 +16,19 @@ export const LoginNavigator = () => (
     }}>
     <LoginStack.Screen
       name="Login"
-      component={tempLoginRouteScreen}
-      options={{headerShown: false}}
+      component={TempLoginRouteScreen}
+      options={{ headerShown: false }}
     />
     <LoginStack.Screen
       name="Join"
-      component={tempLoginRouteScreen}
+      component={TempLoginRouteScreen}
       options={{
         title: '',
       }}
     />
     <LoginStack.Screen
       name="Password"
-      component={tempLoginRouteScreen}
+      component={TempLoginRouteScreen}
       options={{
         title: '',
       }}

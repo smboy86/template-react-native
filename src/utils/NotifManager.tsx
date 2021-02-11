@@ -1,10 +1,10 @@
 import React from 'react';
-import {Alert, View} from 'react-native';
+import { Alert, View } from 'react-native';
 import NotifService from './NotifService';
-import {RootContext} from '../context/RootContextProvider';
+// import {RootContext} from '../context/RootContextProvider';
 
 export default class NotifManager extends React.Component {
-  static contextType = RootContext;
+  // static contextType = RootContext;
 
   constructor(props) {
     super(props);
@@ -16,18 +16,17 @@ export default class NotifManager extends React.Component {
   }
 
   componentDidMount() {
-    const {dispatch} = this.context;
-
+    // const { dispatch } = this.context;
     // Finally notif 객체 등록 (여러 화면에서 사용)
-    dispatch({
-      type: 'SET_NOTIF',
-      payload: {notif: this.notif, token: this.state.registerToken},
-    });
+    // dispatch({
+    //   type: 'SET_NOTIF',
+    //   payload: { notif: this.notif, token: this.state.registerToken },
+    // });
   }
 
   onRegister(token) {
     console.log('Manager onRegister  ::: ', token);
-    this.setState({registerToken: token.token, fcmRegistered: true});
+    this.setState({ registerToken: token.token, fcmRegistered: true });
   }
 
   onNotif(notif) {
@@ -43,7 +42,7 @@ export default class NotifManager extends React.Component {
   // }
 
   render() {
-    const {children} = this.props;
+    const { children } = this.props;
     return <View>{children}</View>;
   }
 }

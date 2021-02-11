@@ -1,21 +1,17 @@
 import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Feather from 'react-native-vector-icons/Feather';
 
-import {BottomTabParamList} from './types';
-import {tempBottomRouteScreen} from '../screens/tempScreens';
-
-import {RootContext} from '../context/RootContextProvider';
+import { BottomTabParamList } from './types';
+import { TempBottomRouteScreen } from '../screens/TempScreens';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
-function TabBarIcon(props: {name: string; color: string}) {
-  return <Feather size={26} style={{marginBottom: -6}} {...props} />;
+function TabBarIcon(props: { name: string; color: string }) {
+  return <Feather size={26} style={{ marginBottom: -6 }} {...props} />;
 }
 
 export function BottomTabNavigator() {
-  const {state, dispatch} = React.useContext(RootContext);
-
   return (
     <BottomTab.Navigator
       tabBarOptions={{
@@ -30,33 +26,33 @@ export function BottomTabNavigator() {
       }}>
       <BottomTab.Screen
         name="TabA"
-        component={tempBottomRouteScreen}
+        component={TempBottomRouteScreen}
         options={{
-          tabBarIcon: ({color}) => <TabBarIcon name="check-circle" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="check-circle" color={color} />,
           tabBarLabel: 'TabA',
         }}
       />
       <BottomTab.Screen
         name="TabB"
-        component={tempBottomRouteScreen}
+        component={TempBottomRouteScreen}
         options={{
-          tabBarIcon: ({color}) => <TabBarIcon name="meh" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="meh" color={color} />,
           tabBarLabel: 'TabB',
         }}
       />
       <BottomTab.Screen
         name="TabC"
-        component={tempBottomRouteScreen}
+        component={TempBottomRouteScreen}
         options={{
-          tabBarIcon: ({color}) => <TabBarIcon name="file-text" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="file-text" color={color} />,
           tabBarLabel: 'TabC',
         }}
       />
       <BottomTab.Screen
         name="TabD"
-        component={tempBottomRouteScreen}
+        component={TempBottomRouteScreen}
         options={{
-          tabBarIcon: ({color}) => <TabBarIcon name="settings" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="settings" color={color} />,
           tabBarLabel: 'TabD',
         }}
       />

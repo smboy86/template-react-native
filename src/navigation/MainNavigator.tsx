@@ -1,8 +1,8 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import {MainParamList} from './types';
-import {tempMainModalScreen} from '../screens/tempScreens';
+import { MainParamList } from './types';
+import { TempMainModalScreen } from '../screens/TempScreens';
 import BottomTabNavigator from './BottomTabNavigator';
 
 const Root = createStackNavigator<MainParamList>();
@@ -13,14 +13,14 @@ export const MainNavigator = () => (
       headerShown: false,
       headerStyle: {
         backgroundColor: '#fff',
-        shadowOffset: {height: 0, width: 0},
+        shadowOffset: { height: 0, width: 0 },
         elevation: 0,
       },
     }}>
     <Root.Screen name="MainBottom" component={BottomTabNavigator} />
     <Root.Screen
       name="AppModal"
-      component={tempMainModalScreen}
+      component={TempMainModalScreen}
       options={{
         headerShown: true,
         title: 'AppModal',
