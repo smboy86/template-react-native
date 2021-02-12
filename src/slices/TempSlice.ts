@@ -6,6 +6,7 @@ import { TempState } from '../types';
 const initialState: TempState = {
   isLogin: false,
   greeting: 'init 안녕~~~',
+  userName: '',
 };
 
 const tempSlice = createSlice({
@@ -27,7 +28,7 @@ const tempSlice = createSlice({
   },
 });
 
-export const { login, logout, setText } = tempSlice.actions;
+export const { login, logout, setText, setNotif } = tempSlice.actions;
 export default tempSlice.reducer;
 
 /*

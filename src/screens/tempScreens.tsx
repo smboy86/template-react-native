@@ -3,8 +3,10 @@ import { View, Pressable } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { LoginParamList, MainParamList, BottomTabParamList } from '../navigation/types';
 import Text from '../components/Text';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from '../slices/TempSlice';
+import { RootState } from '../store/RootReducer';
+import { TestNoti } from '../utils/NotificationService';
 
 interface LoginProps extends StackScreenProps<LoginParamList, 'Login'> {}
 interface MainProps extends StackScreenProps<MainParamList, 'MainBottom'> {}
@@ -40,6 +42,7 @@ export const TempMainModalScreen = ({ route, navigation }: MainProps) => {
 
 export const TempBottomRouteScreen = ({ route, navigation }: BottomProps) => {
   const dispatch = useDispatch();
+  const temp = useSelector((state: RootState) => state.temp);
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -54,17 +57,13 @@ export const TempBottomRouteScreen = ({ route, navigation }: BottomProps) => {
       <Pressable onPress={() => dispatch(logout())} style={{ padding: 10 }}>
         <Text>로그아웃</Text>
       </Pressable>
-      {/* {state.notif !== null ? (
-        <Pressable
-          onPress={() => {
-            // 싱글톤.. 이거 맞아? ㅋㅋㅋ
-            state.notif.localNotif();
-            console.log(state.notif);
-          }}
-          style={{ padding: 10 }}>
-          <Text>노티 객체에 뭔가 있어요! -</Text>
-        </Pressable>
-      ) : null} */}
+      <Pressable
+        onPress={() => {
+          TestNoti();
+        }}
+        style={{ padding: 10 }}>
+        <Text>테스트 알람 보내기</Text>
+      </Pressable>
     </View>
   );
 };

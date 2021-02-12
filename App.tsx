@@ -8,7 +8,7 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import store, { persistor } from './src/store';
 import ErrorBoundary from './src/components/ErrorBoundary';
 import RootNavigator from './src/navigation/RootNavigator';
-// import NotifManager from './src/utils/NotifManager';
+import { Configure } from './src/utils/NotificationService';
 
 export default function App() {
   return (
@@ -18,9 +18,9 @@ export default function App() {
         <Provider {...{ store }}>
           <PersistGate loading={null} {...{ persistor }}>
             <RootNavigator />
+            <Configure />
           </PersistGate>
         </Provider>
-        {/* <NotifManager /> */}
       </ErrorBoundary>
     </SafeAreaProvider>
   );

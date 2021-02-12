@@ -1,6 +1,7 @@
 export interface TempState {
   greeting: string;
   isLogin: boolean;
+  userName: string;
 }
 
 ///// ref source
