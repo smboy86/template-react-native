@@ -1,6 +1,9 @@
 import React from 'react';
-import { View, Pressable } from 'react-native';
+import { View, Pressable, Alert } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
+import Clipboard from '@react-native-clipboard/clipboard';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { LoginParamList, MainParamList, BottomTabParamList } from '../navigation/types';
 import Text from '../components/Text';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,8 +15,21 @@ interface LoginProps extends StackScreenProps<LoginParamList, 'Login'> {}
 interface MainProps extends StackScreenProps<MainParamList, 'MainBottom'> {}
 interface BottomProps extends StackScreenProps<BottomTabParamList, 'TabA'> {}
 
-export const TempLoginRouteScreen = ({ route, navigation }: LoginProps) => {
+export const TempLoginRouteScreen = ({ route }: LoginProps) => {
+  const [token, setToken] = React.useState('토큰 없음');
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    AsyncStorage.getItem('fcmToken').then((data) => {
+      setToken(data);
+    });
+  });
+
+  const copyText = () => {
+    Clipboard.setString(token);
+    Alert.alert('', '토큰 복사 완료');
+  };
+
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text size={19}>[ Login Navigator ] </Text>
@@ -23,6 +39,16 @@ export const TempLoginRouteScreen = ({ route, navigation }: LoginProps) => {
       </Pressable>
       <Pressable onPress={() => dispatch(login({ userName: 'test' }))} style={{ padding: 10 }}>
         <Text>로그인</Text>
+      </Pressable>
+      <Pressable onPress={copyText} style={{ padding: 10 }}>
+        <Text>{token}</Text>
+      </Pressable>
+      <Pressable
+        onPress={() => {
+          TestNoti();
+        }}
+        style={{ padding: 10 }}>
+        <Text>테스트 알람 보내기</Text>
       </Pressable>
     </View>
   );
@@ -56,13 +82,6 @@ export const TempBottomRouteScreen = ({ route, navigation }: BottomProps) => {
       </Pressable>
       <Pressable onPress={() => dispatch(logout())} style={{ padding: 10 }}>
         <Text>로그아웃</Text>
-      </Pressable>
-      <Pressable
-        onPress={() => {
-          TestNoti();
-        }}
-        style={{ padding: 10 }}>
-        <Text>테스트 알람 보내기</Text>
       </Pressable>
     </View>
   );
