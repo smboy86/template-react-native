@@ -1,6 +1,3 @@
-// # class 용
-
-import React from 'react';
 import PushNotification from 'react-native-push-notification';
 import NotificationHandler from './NotificationHandler';
 
@@ -22,7 +19,7 @@ export default class NotifService {
     });
 
     PushNotification.getChannels(function (channels) {
-      // console.log(channels);
+      console.log(channels);
     });
   }
 
@@ -36,10 +33,18 @@ export default class NotifService {
         importance: 4, // (optional) default: 4. Int value of the Android notification importance
         vibrate: true, // (optional) default: true. Creates the default vibration patten if true.
       },
-      (created) => {
-        // 채널 생성 성공
-        // console.log(`createChannel 'default-channel-id' returned '${created}'`); // (optional) callback returns whether the channel was created, false means it already existed.
-      }
+      (created) => console.log(`createChannel 'default-channel-id' returned '${created}'`) // (optional) callback returns whether the channel was created, false means it already existed.
+    );
+    PushNotification.createChannel(
+      {
+        channelId: 'sound-channel-id', // (required)
+        channelName: `Sound channel`, // (required)
+        channelDescription: 'A sound channel', // (optional) default: undefined.
+        soundName: 'sample.mp3', // (optional) See `soundName` parameter of `localNotification` function
+        importance: 4, // (optional) default: 4. Int value of the Android notification importance
+        vibrate: true, // (optional) default: true. Creates the default vibration patten if true.
+      },
+      (created) => console.log(`createChannel 'sound-channel-id' returned '${created}'`) // (optional) callback returns whether the channel was created, false means it already existed.
     );
   }
 
@@ -166,5 +171,9 @@ export default class NotifService {
 
   getScheduledLocalNotifications(callback) {
     PushNotification.getScheduledLocalNotifications(callback);
+  }
+
+  getDeliveredNotifications(callback) {
+    PushNotification.getDeliveredNotifications(callback);
   }
 }
