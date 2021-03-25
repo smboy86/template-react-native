@@ -1,26 +1,26 @@
 import PushNotification from 'react-native-push-notification';
 
 class NotificationHandler {
-  // 알람 수신 됬을때
   onNotification(notification) {
+    console.log('NotificationHandler:', notification);
+
     if (typeof this._onNotification === 'function') {
       this._onNotification(notification);
     }
   }
 
-  // 알람 등록시
   onRegister(token) {
-    // console.log('토크~~~~~~~~~~~~~~ㄴ   ', token, this._onRegister);
+    console.log('NotificationHandler:', token);
+
     if (typeof this._onRegister === 'function') {
       this._onRegister(token);
     }
   }
 
-  // 액션 알람 수신시 (기능 확인 못함 X)
   onAction(notification) {
     console.log('Notification action received:');
-    console.log('onAction notification.action :: ', notification.action);
-    console.log('onAction notification :: ', notification);
+    console.log(notification.action);
+    console.log(notification);
 
     if (notification.action === 'Yes') {
       PushNotification.invokeApp(notification);
@@ -32,12 +32,10 @@ class NotificationHandler {
     console.log('onRegistrationError  :: ', err);
   }
 
-  // 1) notifService 호출
   attachRegister(handler) {
     this._onRegister = handler;
   }
 
-  // 2) notifService 호출
   attachNotification(handler) {
     this._onNotification = handler;
   }
