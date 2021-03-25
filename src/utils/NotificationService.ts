@@ -1,3 +1,5 @@
+// # hook용
+
 import React, { useEffect } from 'react';
 // import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import PushNotification from 'react-native-push-notification';
@@ -11,6 +13,22 @@ const Configure = () => {
   // }), shallowEqual);
   // const dispatch = useDispatch();
 
+  // 1) 기본 채널 만들기
+  PushNotification.createChannel(
+    {
+      channelId: 'default-channel-id', // (required)
+      channelName: `Default channel`, // (required)
+      channelDescription: 'A default channel', // (optional) default: undefined.
+      soundName: 'default', // (optional) See `soundName` parameter of `localNotification` function
+      importance: 4, // (optional) default: 4. Int value of the Android notification importance
+      vibrate: true, // (optional) default: true. Creates the default vibration patten if true.
+    },
+    (created) => {
+      // 채널 생성 성공
+      console.log(`createChannel 'default-channel-id' returned '${created}'`); // (optional) callback returns whether the channel was created, false means it already existed.
+    }
+  );
+  // 2)
   // Must be outside of any component LifeCycle (such as `componentDidMount`).
   PushNotification.configure({
     // (optional) Called when Token is generated (iOS and Android)
@@ -156,10 +174,17 @@ const TestNoti = () => {
 //   })
 // }
 
+const GetChannels = () => {
+  PushNotification.getChannels(function (channels) {
+    console.log(channels);
+  });
+};
+
 export {
   Configure,
   LocalNotificationSchedule,
   CancelLocalNotifications,
   TestNoti,
+  GetChannels,
   // LocalNotification
 };
