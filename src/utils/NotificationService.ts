@@ -6,12 +6,13 @@ import PushNotification from 'react-native-push-notification';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NavigationService from '../routing/NavigationService';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 
 const Configure = () => {
   // const { activeProject } = useSelector(state => ({
   //   activeProject: state.homeReducer.activeProject,
   // }), shallowEqual);
-  // const dispatch = useDispatch();
 
   // 1) 기본 채널 만들기
   PushNotification.createChannel(
@@ -39,7 +40,9 @@ const Configure = () => {
 
     // (required) Called when a remote is received or opened, or local notification is opened
     onNotification: function (notification) {
+      Alert.alert(notification.title, notification.message);
       console.log('NOTIFICATION:', notification);
+      // if()
       // console.log("NOTIFICATION:", notification, activeProject);
 
       // process the notification
